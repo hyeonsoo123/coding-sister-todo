@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로젝트 작업 캘린더 - TODO 관리</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="bg-gray-50 min-h-screen font-sans">
+    <!-- 헤더 -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <h1 class="text-2xl sm:text-3xl font-bold text-indigo-600">📅 프로젝트 작업 캘린더</h1>
+        </div>
+    </header>
+
+    <!-- 메인 컨텐츠 -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+        <!-- 모바일: 탭 네비게이션 -->
+        <div class="lg:hidden mb-6">
+            <div class="flex gap-2 bg-gray-200 rounded-lg p-1">
+                <button id="tabCalendar" class="tabBtn flex-1 py-3 px-4 rounded-lg bg-indigo-600 text-white font-semibold transition min-h-[44px]" data-tab="calendar">
+                    📅 캘린더
+                </button>
+                <button id="tabTodo" class="tabBtn flex-1 py-3 px-4 rounded-lg bg-gray-200 text-gray-700 font-semibold transition min-h-[44px]" data-tab="todo">
+                    ✅ TODO
+                </button>
+            </div>
+        </div>
+
+        <!-- 모바일: 캘린더 탭 -->
+        <div id="mobileCalendarTab" class="lg:hidden mb-6">
+            <div class="bg-white rounded-lg shadow-lg p-4 sm:p-6">
+                <div id="calendar"></div>
+            </div>
+        </div>
+
+        <!-- 모바일: TODO 탭 (숨김) & 데스크톱: 전체 레이아웃 -->
+        <div id="mobileTodoTab" class="hidden lg:block lg:grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- 데스크톱: 캘린더 -->
+            <div class="hidden lg:block">
+                <div class="bg-white rounded-lg shadow-lg p-6 sticky top-24">
+                    <div id="calendarDesktop"></div>
+                </div>
+            </div>
+
+            <!-- TODO 섹션 (데스크톱용) -->
+            <div class="lg:col-span-2">
+                <!-- TODO 입력 -->
+                <div class="bg-white rounded-lg shadow-lg p-4 sm:p-6 mb-6">
+                    <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-6">
+                        <span id="selectedDate">오늘의 작업</span>
+                    </h2>
+
+                    <div class="mb-6">
+                        <label class="block text-sm font-semibold text-gray-700 mb-3">작업 제목</label>
+                        <input
+                            type="text"
+                            id="todoInput"
+                            placeholder="작업 제목을 입력하세요..."
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-base min-h-[44px]"
+                        >
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="block text-sm font-semibold text-gray-700 mb-3">상세 설명</label>
+                        <textarea
+                            id="todoDescription"
+                            placeholder="작업에 대한 설명을 입력하세요..."
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-base min-h-[120px] resize-none"
+                        ></textarea>
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="block text-sm font-semibold text-gray-700 mb-3">우선순위</label>
+                        <select id="todoPriority" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 min-h-[44px]">
+                            <option value="low">🟢 낮음</option>
+                            <option value="medium" selected>🟡 중간</option>
+                            <option value="high">🔴 높음</option>
+                        </select>
+                    </div>
+
+                    <button
+                        id="addTodoBtn"
+                        class="w-full px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition font-semibold min-h-[44px]"
+                    >
+                        ➕ 작업 추가
+                    </button>
+                </div>
+
+                <!-- TODO 필터 -->
+                <div class="bg-white rounded-lg shadow-lg p-4 sm:p-6">
+                    <div class="flex flex-wrap gap-2 mb-6 pb-6 border-b">
+                        <button class="filterBtn px-4 py-3 sm:py-2 rounded-full bg-indigo-600 text-white font-semibold min-h-[44px] text-sm" data-filter="all">전체</button>
+                        <button class="filterBtn px-4 py-3 sm:py-2 rounded-full bg-gray-200 text-gray-700 font-semibold min-h-[44px] text-sm" data-filter="active">진행중</button>
+                        <button class="filterBtn px-4 py-3 sm:py-2 rounded-full bg-gray-200 text-gray-700 font-semibold min-h-[44px] text-sm" data-filter="completed">완료</button>
+                    </div>
+
+                    <!-- TODO 목록 -->
+                    <div id="todoList" class="space-y-4">
+                        <!-- TODO 아이템이 여기에 동적으로 추가됩니다 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 스크립트 -->
+    <script src="js/calendar.js"></script>
+    <script src="js/todo.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

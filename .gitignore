@@ -1,0 +1,16 @@
+﻿# Dependencies
+node_modules/
+npm-debug.log
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local

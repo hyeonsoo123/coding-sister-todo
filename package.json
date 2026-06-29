@@ -1,0 +1,17 @@
+{
+  "name": "coding-sister-todo",
+  "version": "1.0.0",
+  "description": "포트폴리오 및 TODO 관리 앱",
+  "main": "index.js",
+  "scripts": {
+    "dev": "live-server public/ --port=8081",
+    "build:css": "tailwindcss -i ./src/css/input.css -o ./public/css/output.css --watch"
+  },
+  "keywords": ["portfolio", "todo", "app"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "tailwindcss": "^3.4.0",
+    "live-server": "^1.2.2"
+  }
+}
