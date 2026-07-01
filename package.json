@@ -4,7 +4,7 @@
   "description": "포트폴리오 및 TODO 관리 앱",
   "main": "index.js",
   "scripts": {
-    "dev": "live-server public/ --port=8081",
+    "dev": "live-server public/ --port=8081 --entry-file=index.html",
     "build:css": "tailwindcss -i ./src/css/input.css -o ./public/css/output.css --watch"
   },
   "keywords": ["portfolio", "todo", "app"],
