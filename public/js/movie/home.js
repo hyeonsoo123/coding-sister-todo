@@ -476,7 +476,8 @@
         document.getElementById('heroDetail').href = `movie-detail.html?id=${m.id}`;
         document.getElementById('heroOverview').textContent = m.overview || '';
         document.getElementById('heroMeta').innerHTML =
-            `<span class="px-2 py-0.5 bg-yellow-400 text-black rounded font-bold">⭐ ${UI.rating(m.vote_average)}</span>` +
+            `<span class="font-bold text-yellow-400">⭐ ${UI.rating(m.vote_average)}</span>` +
+            `<span class="text-gray-300">·</span>` +
             `<span class="text-gray-200">${UI.year(m.release_date)}</span>`;
         updateHeroFav();
         document.querySelectorAll('.hero-dot').forEach((d, idx) => {

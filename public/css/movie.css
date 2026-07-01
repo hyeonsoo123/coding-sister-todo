@@ -249,6 +249,7 @@ body {
     background-color: #0f1015 !important;
     background-image: none !important;
     color: #e5e7eb;
+    overflow-x: clip; /* 가로 오버플로우로 인한 우측 빈공간 방지 (sticky 안전) */
 }
 
 /* 표면(헤더/서브내비/패널/카드 배경) */

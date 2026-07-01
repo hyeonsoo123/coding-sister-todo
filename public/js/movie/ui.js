@@ -311,10 +311,27 @@ const UI = (() => {
         document.getElementById('csTrailerFrame').src = `https://www.youtube.com/embed/${key}?autoplay=1`;
     }
 
+    // 모바일 헤더 햄버거 메뉴 토글 (없는 페이지에선 no-op)
+    function initHeaderMenu() {
+        const btn = document.getElementById('menuBtn');
+        const panel = document.getElementById('menuPanel');
+        if (!btn || !panel) return;
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            panel.classList.toggle('hidden');
+        });
+        document.addEventListener('click', (e) => {
+            if (!panel.classList.contains('hidden') && !panel.contains(e.target) && e.target !== btn) {
+                panel.classList.add('hidden');
+            }
+        });
+    }
+
     enableDragScroll();
     enableImageFade();
     enableTrailerPlay();
     createBackToTop();
+    initHeaderMenu();
 
     return { img, profileImg, year, rating, escapeHtml, mediaCard, movieCard, toast, trailerBlock, playTrailer, certKR, certLabel, POSTER_FALLBACK };
 })();

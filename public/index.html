@@ -22,27 +22,31 @@
 <body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen font-sans">
     <!-- 헤더 -->
     <header class="bg-white shadow-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 relative">
             <div class="flex justify-between items-center gap-3">
-                <a href="index.html" class="text-xl sm:text-2xl font-bold text-indigo-600 shrink-0">🎬 Coding Sister <span class="hidden sm:inline">영화</span></a>
-                <div class="flex gap-2 items-center">
+                <a href="index.html" class="text-xl sm:text-2xl font-bold text-indigo-600 shrink-0">🎬<span class="hidden sm:inline"> Coding Sister 영화</span></a>
+
+                <!-- 모바일: 햄버거 / 데스크톱: 인라인 -->
+                <button id="menuBtn" type="button" aria-label="menu" class="sm:hidden px-3 py-2 bg-indigo-100 text-indigo-600 rounded-lg min-h-[44px] text-xl leading-none">☰</button>
+
+                <div id="menuPanel" class="hidden sm:flex flex-col sm:flex-row items-stretch sm:items-center gap-2 absolute sm:static top-full right-4 sm:right-auto mt-2 sm:mt-0 p-3 sm:p-0 rounded-xl sm:rounded-none bg-[#16171d] sm:bg-transparent border border-white/10 sm:border-0 shadow-xl sm:shadow-none z-50">
                     <select id="langSelect" aria-label="Language" class="px-2 py-2 bg-indigo-50 text-indigo-700 rounded-lg text-sm font-semibold min-h-[44px] outline-none cursor-pointer border border-indigo-100"></select>
-                    <a href="about.html" class="px-3 py-2 bg-indigo-100 text-indigo-600 rounded-lg hover:bg-indigo-200 transition font-semibold text-sm min-h-[44px] flex items-center">👤 <span class="hidden sm:inline ml-1" data-i18n="header_about">내 정보</span></a>
-                    <a href="todo.html" class="px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition font-semibold text-sm min-h-[44px] flex items-center">📅 <span class="hidden sm:inline ml-1">TODO</span></a>
+                    <a href="about.html" class="px-3 py-2 bg-indigo-100 text-indigo-600 rounded-lg hover:bg-indigo-200 transition font-semibold text-sm min-h-[44px] flex items-center">👤 <span class="ml-1" data-i18n="header_about">내 정보</span></a>
+                    <a href="todo.html" class="px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition font-semibold text-sm min-h-[44px] flex items-center">📅 <span class="ml-1">TODO</span></a>
                 </div>
             </div>
         </div>
     </header>
 
     <!-- 히어로 빌보드 (와이드 백드롭 + 검색) -->
-    <section id="hero" class="relative w-full h-[360px] sm:h-[460px] overflow-hidden bg-gray-900">
+    <section id="hero" class="relative w-full overflow-hidden bg-gray-900">
         <div id="heroSlide" class="absolute inset-0">
             <img id="heroImg" src="" alt="" class="w-full h-full object-cover object-top opacity-0 transition-opacity duration-500">
         </div>
         <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20"></div>
         <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/20 to-transparent"></div>
 
-        <div class="relative max-w-7xl mx-auto h-full px-4 sm:px-6 lg:px-8 flex flex-col justify-between py-5 sm:py-7">
+        <div class="relative max-w-7xl mx-auto min-h-[360px] sm:min-h-[460px] px-4 sm:px-6 lg:px-8 flex flex-col justify-between gap-6 py-6 sm:py-7">
             <!-- 검색 (히어로 상단, 가운데) -->
             <form id="searchForm" class="w-full sm:max-w-2xl mx-auto">
                 <div class="relative">
@@ -56,12 +60,12 @@
             <!-- 피처드 정보 (히어로 하단) -->
             <div id="heroInfo" class="max-w-2xl text-white">
                 <a id="heroTitleLink" href="#" class="inline-block">
-                    <h2 id="heroTitle" class="text-3xl sm:text-5xl font-extrabold drop-shadow-lg leading-tight transition-opacity hover:opacity-80"></h2>
+                    <h2 id="heroTitle" class="text-2xl sm:text-5xl font-extrabold drop-shadow-lg leading-tight transition-opacity hover:opacity-80"></h2>
                 </a>
                 <div id="heroMeta" class="flex flex-wrap items-center gap-2 mt-2 text-sm"></div>
                 <p id="heroOverview" class="mt-2 text-sm sm:text-base text-gray-200 drop-shadow max-w-xl"
                    style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;"></p>
-                <div class="flex gap-2 mt-4">
+                <div class="flex flex-wrap gap-2 mt-4">
                     <button id="heroTrailer" type="button" class="px-5 py-2.5 bg-indigo-500 text-white rounded-lg font-bold hover:bg-indigo-400 transition min-h-[44px] inline-flex items-center gap-1">▶ <span data-i18n="sec_trailer">예고편</span></button>
                     <a id="heroDetail" href="#" class="px-5 py-2.5 bg-white/25 text-white rounded-lg font-bold backdrop-blur hover:bg-white/35 transition min-h-[44px] inline-flex items-center gap-1">ℹ <span data-i18n="hero_detail">상세 보기</span></a>
                     <button id="heroFav" type="button" aria-label="favorite" class="px-4 py-2.5 bg-white/25 text-white rounded-lg font-bold backdrop-blur hover:bg-white/35 transition min-h-[44px]">🤍</button>
@@ -69,8 +73,8 @@
             </div>
 
             <!-- 좌우 이동 + 점 -->
-            <button id="heroPrev" type="button" aria-label="prev" class="absolute left-1 sm:left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 hover:bg-black/60 text-white text-2xl flex items-center justify-center">‹</button>
-            <button id="heroNext" type="button" aria-label="next" class="absolute right-1 sm:right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 hover:bg-black/60 text-white text-2xl flex items-center justify-center">›</button>
+            <button id="heroPrev" type="button" aria-label="prev" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 hover:bg-black/60 text-white text-2xl hidden sm:flex items-center justify-center">‹</button>
+            <button id="heroNext" type="button" aria-label="next" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 hover:bg-black/60 text-white text-2xl hidden sm:flex items-center justify-center">›</button>
             <div id="heroDots" class="absolute bottom-3 right-4 flex gap-1.5"></div>
         </div>
     </section>
